@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="15" height="10" tilewidth="32" tileheight="32" nextobjectid="6">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="5" columns="5">
+  <image source="../../../Sites/misc/Javascript Games/CanvasMaze/assets/tileset.png" width="160" height="32"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="15" height="10">
+  <data encoding="csv">
+2,2,3,2,2,2,2,2,2,2,2,2,2,2,2,
+2,1,1,1,1,1,1,1,1,2,1,1,1,1,2,
+2,1,1,1,1,1,1,2,1,1,2,1,2,1,2,
+2,1,2,2,2,2,1,1,2,1,1,1,1,1,2,
+2,1,2,1,1,2,2,2,1,2,2,2,2,1,2,
+2,1,2,1,1,1,1,2,2,1,1,1,2,1,2,
+2,1,2,1,2,2,1,1,1,2,1,1,2,1,2,
+2,1,2,1,1,1,2,2,1,1,2,2,2,1,2,
+2,1,1,1,2,1,1,1,2,1,1,1,1,1,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+</data>
+ </layer>
+ <layer name="Tile Layer 2" width="15" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,5,0,0,0,0,0,5,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>
