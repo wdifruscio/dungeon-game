@@ -68,23 +68,23 @@ function playGame() {
   //Up
   if (moveUp) {
     player.sourceX = 32;
-    player.vy = -0.2;
+    player.vy = -0.3;
   }
   //Down
   if (moveDown) {
     player.sourceX = 0;
-    player.vy = 0.2;
+    player.vy = 0.3;
   }
   //Left
   if (moveLeft) {
     player.sourceX = 96;
     player.sourceX = 96;
-    player.vx = -0.2;
+    player.vx = -0.3;
   }
   //Right
   if (moveRight) {
     player.sourceX = 64;
-    player.vx = 0.2;
+    player.vx = 0.3;
   }
   //Set the player's velocity to zero if none of the keys are being pressed
   if (!moveUp && !moveDown) {
@@ -108,16 +108,19 @@ function playGame() {
   //collisions with exits
   for (let i = 0; i < exits.length; i++) {
     if (hitTestRectangle(player, exits[i])) {
-      alert("winner");
-      gameState = OVER;
+      alert("EVENT");
     }
   }
 
   //collisions with traps
   for (let i = 0; i < traps.length; i++) {
+    var trap = traps[i];
     if (hitTestRectangle(player, traps[i])) {
-      alert("LOSER");
-      gameState = OVER;
+      // alert('bye bye');
+      console.log(traps);
+      removeObject(trap, traps);
+      removeObject(trap, sprites);
+      console.log(traps);
     }
   }
 }

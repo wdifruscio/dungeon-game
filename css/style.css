@@ -1,0 +1,15 @@
+* {
+   box-sizing: border-box; 
+}
+
+body {
+    /*background:black;*/
+    padding:0;
+    width:100%;
+    margin:auto;   
+}
+
+canvas {
+    border:5px solid grey;
+    margin:0 auto;
+}

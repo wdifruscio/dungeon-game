@@ -3,12 +3,12 @@ let assetsLoaded = 0;
 //tileset
 let image = new Image();
 
-image.addEventListener("load", loadHandler, false);
-image.src = "assets/tileset.png";
-assetsToLoad.push(image);
+
 
 function loadImages() {
-
+    image.addEventListener("load", loadHandler, false);
+    image.src = "assets/tileset.png";
+    assetsToLoad.push(image);
 }
 
 

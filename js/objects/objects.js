@@ -1,6 +1,6 @@
 //--- The sprite object
 
-var spriteObject = {
+let spriteObject = {
   sourceX: 0,
   sourceY: 0,
   sourceWidth: 32,
@@ -31,6 +31,26 @@ var spriteObject = {
     return this.height / 2;
   },
 };
+
+let playerObject = Object.create(spriteObject);
+playerObject.health = 100;
+playerObject.strength = 50;
+playerObject.weapon = "Sword";
+
+let enemyObject = Object.create(spriteObject);
+enemyObject.health = Math.floor((Math.random() * 25) + 1);
+enemyObject.strength = Math.floor((Math.random() * 25) + 1);
+
+function removeObject(objectToRemove,arr){
+  let i = arr.indexOf(objectToRemove);
+  if (i !== -1){
+    arr.splice(i,1);
+  }
+}
+
+
+
+
 
 //--- The monster object
 

@@ -12,6 +12,7 @@ let WALL = 2;
 let EXIT = 3;
 let PLAYER = 4;
 let TRAP = 5;
+let ENEMY = 6;
 
 let SIZE = 32;
 let ROWS = map.length;
@@ -63,7 +64,7 @@ function buildMap(levelMap) {
             break;
 
           case PLAYER:
-            player = Object.create(spriteObject);
+            player = Object.create(playerObject);
             player.sourceX = 0;
             player.sourceY = 32;
             player.x = column * SIZE;
@@ -79,6 +80,16 @@ function buildMap(levelMap) {
             trap.y = row * SIZE;
             sprites.push(trap);
             traps.push(trap);
+            break;
+
+          case ENEMY:
+            let enemy = Object.create(enemyObject);
+            enemy.sourceX = 0;
+            enemy.sourceY = 64;
+            enemy.x = column * SIZE;
+            enemy.y = row * SIZE;
+            sprites.push(enemy);
+            enemies.push(enemy);
             break;
         }
       }
