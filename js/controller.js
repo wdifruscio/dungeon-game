@@ -123,4 +123,59 @@ function playGame() {
       console.log(traps);
     }
   }
+
+  //collisions with enemies
+  for (let i = 0; i < enemies.length; i++) {
+    var enemy = enemies[i];
+    if (hitTestRectangle(player, enemy)) {
+      let collisionSide = blockRectangle(player, enemy);
+      switch(collisionSide) {
+        case "left":
+        player.x +=25;
+        enemy.x -=10;
+        break;
+
+        case "right":
+        player.x -=25;
+        enemy.x +=10;
+        break;
+
+        case "top":
+        player.y +=25;
+        enemy.y -=10;
+        break;
+
+        case "bottom":
+        player.y -=25;
+        enemy.y +=10;
+        break;
+      }
+      fightEnemy(enemy);
+    }
+  }
+}
+
+
+function fightEnemy(enemy) {
+  var playerDamage = Math.random() * Math.floor(player.strength + 1);
+  var enemyDamage = Math.random() * Math.floor(enemy.strength + 1);
+
+  battle(playerDamage,enemyDamage);
+
+  function battle(playerDamage, enemyDamage) {
+    enemy.health -= playerDamage.toFixed(2);
+    player.health -= enemyDamage.toFixed(2);
+
+    player.health = player.health.toFixed(2);
+
+    if (enemy.health < 0 && player.health > 0) {
+      removeObject(enemy, enemies);
+      removeObject(enemy, sprites);
+      messages.gameMessage = "YOU DEFEATED A WOLF, SON.";
+    }
+    else if(player.health < 0) {
+      messages.gameMessage = "YOU LOSE";
+      gameState = OVER;
+    }
+  }
 }

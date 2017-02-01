@@ -34,12 +34,12 @@ let spriteObject = {
 
 let playerObject = Object.create(spriteObject);
 playerObject.health = 100;
-playerObject.strength = 50;
+playerObject.strength = 150;
 playerObject.weapon = "Sword";
 
 let enemyObject = Object.create(spriteObject);
-enemyObject.health = Math.floor((Math.random() * 25) + 1);
-enemyObject.strength = Math.floor((Math.random() * 25) + 1);
+enemyObject.health = Math.floor((Math.random() * 75) + 1);
+enemyObject.strength = Math.floor((Math.random() * 35) + 25);
 
 function removeObject(objectToRemove,arr){
   let i = arr.indexOf(objectToRemove);
