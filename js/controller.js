@@ -127,6 +127,9 @@ function playGame() {
   //collisions with enemies
   for (let i = 0; i < enemies.length; i++) {
     var enemy = enemies[i];
+
+    findTarget(player, enemy);
+
     if (hitTestRectangle(player, enemy)) {
       let collisionSide = blockRectangle(player, enemy);
       switch(collisionSide) {
@@ -153,6 +156,28 @@ function playGame() {
       fightEnemy(enemy);
     }
   }
+}
+
+function findTarget(player, enemy) {
+  targetX = player.x;
+  targetY = player.y;
+
+  enemyX = enemy.x;
+  enemyY = enemy.y;
+
+  if(enemyX < targetX) {
+    enemy.x += 0.1;
+  }
+  if (enemyX > targetX ){
+  enemy.x -= 0.1;
+  }
+  if(enemyY < targetY) {
+    enemy.y += 0.1;
+  }
+  if (enemyY > targetY ){
+  enemy.y -= 0.1;
+  }
+  
 }
 
 

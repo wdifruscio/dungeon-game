@@ -31,8 +31,7 @@ let walls = [];
 let exits = [];
 let traps = [];
 let enemies = [];
-let player = null;
-
+let player = {};
 
 
 //assets
