@@ -12,7 +12,8 @@ let WALL = 2;
 let EXIT = 3;
 let PLAYER = 4;
 let TRAP = 5;
-let ENEMY = 6;
+let ENEMY_RANDOM = 6;
+let ENEMY_BOSS = 7;
 
 let SIZE = 32;
 let ROWS = map.length;
@@ -28,6 +29,38 @@ function checkLevel() {
 function buildMap(levelMap) {
   for (let row = 0; row < ROWS; row++) {
     for (let column = 0; column < COLUMNS; column++) {
+
+      function createEnemy() {
+        let enemy = Object.create(enemyObject);
+        function random(arr) {return Math.floor((Math.random() * arr.length))};
+        let options = [0,32,64,96];
+        let randomIndex = random(options);
+        enemy.sourceX = options[randomIndex];
+        enemy.sourceY = 64;
+        //set stats
+        setEnemyStats(enemy,enemy.sourceY, enemy.sourceX, randomIndex);  
+        enemy.x = column * SIZE;
+        enemy.y = row * SIZE;
+        sprites.push(enemy);
+        enemies.push(enemy);
+      }
+
+      function setEnemyStats(enemy, source, multiplier, randomIndex) {
+      
+        function getEnemyTilesheetPosition(tileRow, tileCol) {
+          switch(tileRow) {
+            case 64:
+            let names = ['WOLF', 'BAT', 'MOUSE', 'TURTLE'];
+            enemy.name = names[randomIndex];
+            console.log(enemy.name);
+            break;
+          }
+        }
+        enemy.strength*= multiplier / 100;
+        getEnemyTilesheetPosition(source,multiplier);
+        console.log(enemy.strength);
+      }
+
       let currentTile = levelMap[row][column];
       if (currentTile !== EMPTY) {
         let tilesheetX = Math.floor((currentTile - 1) % tilesheetColumns) * SIZE;
@@ -82,17 +115,23 @@ function buildMap(levelMap) {
             traps.push(trap);
             break;
 
-          case ENEMY:
-            let enemy = Object.create(enemyObject);
-            enemy.sourceX = 0;
-            enemy.sourceY = 64;
-            enemy.x = column * SIZE;
-            enemy.y = row * SIZE;
-            sprites.push(enemy);
-            enemies.push(enemy);
+          case ENEMY_RANDOM:
+          createEnemy();
+            break;
+
+          case ENEMY_BOSS:
+            let boss = Object.create(enemyObject);
+            boss.sourceX = 0;
+            boss.sourceY = 64;
+            boss.x = column * SIZE;
+            boss.y = row * SIZE;
+            sprites.push(boss);
+            enemies.push(boss);
             break;
         }
       }
     }
   }
 }
+
+//functions to create enemies.

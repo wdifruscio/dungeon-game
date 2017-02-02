@@ -10,7 +10,6 @@ let moveUp = false;
 let moveDown = false;
 let moveRight = false;
 let moveLeft = false;
-let isAttacking = false;
 
 
 window.addEventListener("keydown", function(event) {
@@ -55,47 +54,39 @@ window.addEventListener("keyup", function(event) {
   }
 }, false);
 
-window.addEventListener("keypress", function(event) {
-  switch(event.keyCode) {
-    case SPACE:
-    isAttacking = true;
-    break;
-  }
-}, false );
-
-
 function playGame() {
   //Up
   if (moveUp) {
     player.sourceX = 32;
-    player.vy = -0.3;
+    player.vy = -1.2;
   }
+
   //Down
   if (moveDown) {
     player.sourceX = 0;
-    player.vy = 0.3;
+    player.vy = 1.2;
   }
+
   //Left
   if (moveLeft) {
     player.sourceX = 96;
     player.sourceX = 96;
-    player.vx = -0.3;
+    player.vx = -1.2;
   }
+
   //Right
   if (moveRight) {
     player.sourceX = 64;
-    player.vx = 0.3;
+    player.vx = 1.2;
   }
+
   //Set the player's velocity to zero if none of the keys are being pressed
   if (!moveUp && !moveDown) {
     player.vy = 0;
   }
+
   if (!moveLeft && !moveRight) {
     player.vx = 0;
-  }
-  if (isAttacking) {
-    // player.sourceX = 1000;
-    // isAttacking = false;
   }
 
   player.x += player.vx;
@@ -108,7 +99,7 @@ function playGame() {
   //collisions with exits
   for (let i = 0; i < exits.length; i++) {
     if (hitTestRectangle(player, exits[i])) {
-      alert("EVENT");
+      console.log("collision with exit.");
     }
   }
 
@@ -166,18 +157,17 @@ function findTarget(player, enemy) {
   enemyY = enemy.y;
 
   if(enemyX < targetX) {
-    enemy.x += 0.1;
+    enemy.x += Math.random();
   }
   if (enemyX > targetX ){
-  enemy.x -= 0.1;
+  enemy.x -= Math.random();
   }
   if(enemyY < targetY) {
-    enemy.y += 0.1;
+    enemy.y += Math.random();
   }
   if (enemyY > targetY ){
-  enemy.y -= 0.1;
-  }
-  
+  enemy.y -= Math.random();
+  } 
 }
 
 
@@ -196,8 +186,9 @@ function fightEnemy(enemy) {
     if (enemy.health < 0 && player.health > 0) {
       removeObject(enemy, enemies);
       removeObject(enemy, sprites);
-      messages.gameMessage = "YOU DEFEATED A WOLF, SON.";
+      messages.gameMessage = "YOU DEFEATED A " + enemy.name + ", SON.";
     }
+    
     else if(player.health < 0) {
       messages.gameMessage = "YOU LOSE";
       gameState = OVER;

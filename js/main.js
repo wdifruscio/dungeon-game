@@ -13,8 +13,9 @@ gameLogic.init = function () {
 //gamestates
 const LOADING = 0;
 const BUILD_MAP = 1;
-const PLAYING = 2;
-const OVER = 3;
+const GAME_SCREEN = 2;
+const PLAYING = 3;
+const OVER = 4;
 
 //set game state
 let gameState = LOADING;
@@ -39,8 +40,7 @@ let player = {};
 function update() {
 
   //switched to set interval for code ease and readability.
-  let framesPerSecond = 30;
-  setInterval(update, 1000 / framesPerSecond);
+requestAnimationFrame(update, canvas);
 
   //Change what the game is doing based on the game state
   switch (gameState) {
@@ -67,12 +67,14 @@ function update() {
 
 function render() {
   colorRect(0,0, canvas.width,canvas.height, "black");
+  //////// make moar elegant
   drawMessage(messages.gameMessage,canvas.width /2,475, 'white', "20px");
   drawMessage(messages.healthTitle,50, 450, "white", "12px");
-  drawHealth(player.health, 90,450);
   drawMessage(messages.weaponTitle,50,480, "white", "12px");
-  drawStats(player.weapon, 100,480);
   
+  drawHealth(player.health, 90,450);
+  drawStats(player.weapon, 100,480);
+  ///////
   if (sprites.length !== 0) {
     for (let i = 0; i < sprites.length; i++) {
       let sprite = sprites[i];
